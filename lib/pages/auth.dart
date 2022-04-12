@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../main.dart';
+
 class AuthenticationPage extends StatefulWidget {
   const AuthenticationPage({Key? key}) : super(key: key);
 
@@ -17,6 +19,8 @@ class AuthenticationPageWidget extends State<AuthenticationPage> {
     return Scaffold(
       backgroundColor: Colors.red.shade300,
       body: Container(
+        height: 620,
+        alignment: Alignment.center,
         child: Column(
           children: [
             Container(
@@ -30,12 +34,10 @@ class AuthenticationPageWidget extends State<AuthenticationPage> {
             Expanded(
               child: Container(
                 padding: const EdgeInsets.symmetric(horizontal: 32),
-                constraints: const BoxConstraints.expand(),
+                constraints: BoxConstraints.tight(const Size.fromWidth(450)),
                 decoration: const BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(35),
-                        topRight: Radius.circular(35))),
+                  color: Colors.white,
+                ),
                 child: Column(
                   children: [
                     const SizedBox(
@@ -105,24 +107,28 @@ class AuthenticationPageWidget extends State<AuthenticationPage> {
                     ElevatedButton(
                         onPressed: () {
                           showDialog(
-                              context: context,
-                              builder: (context) {
-                                return SimpleDialog(
-                                  title: const Text('Your submitted data '),
-                                  children: [
-                                    ListTile(
-                                      leading: const Icon(Icons.mail),
-                                      title:
-                                          Text(emailController.text.toString()),
-                                    ),
-                                    ListTile(
-                                      leading: const Icon(Icons.lock),
-                                      title: Text(
-                                          passwordController.text.toString()),
-                                    ),
-                                  ],
-                                );
-                              });
+                                  context: context,
+                                  builder: (context) {
+                                    return SimpleDialog(
+                                      title: const Text('Your submitted data '),
+                                      children: [
+                                        ListTile(
+                                          leading: const Icon(Icons.mail),
+                                          title: Text(
+                                              emailController.text.toString()),
+                                        ),
+                                        ListTile(
+                                          leading: const Icon(Icons.lock),
+                                          title: Text(passwordController.text
+                                              .toString()),
+                                        ),
+                                      ],
+                                    );
+                                  })
+                              .then((value) => Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (_) => const MyApp())));
                         },
                         child: const Padding(
                           padding: EdgeInsets.symmetric(

@@ -5,6 +5,8 @@ import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
 
 import '../components/del_dialog.dart';
+import 'gedi/form.dart';
+import 'gedi/text.dart';
 
 class DownloadGediPage extends StatefulWidget {
   const DownloadGediPage({Key? key, required this.title}) : super(key: key);
@@ -14,7 +16,7 @@ class DownloadGediPage extends StatefulWidget {
 }
 
 class DownloadGediPageWidget extends State<DownloadGediPage> {
-  void _addNewData() {}
+  void _reloadData() {}
   var tableData = GediDataSource();
   @override
   Widget build(BuildContext context) {
@@ -27,14 +29,23 @@ class DownloadGediPageWidget extends State<DownloadGediPage> {
             padding: const EdgeInsets.only(right: 10.0),
             child: IconButton(
                 tooltip: "นำเข้า GEDI ใหม่",
-                onPressed: _addNewData,
+                onPressed: () async {
+                  // Navigator.pop(context);
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (_) => const GediForm(
+                                title: 'เพิ่มข้อมูล GEDI',
+                                tooltip: 'บันทึกข้อมูล',
+                              )));
+                },
                 icon: const Icon(Ionicons.add_outline)),
           ),
           Padding(
             padding: const EdgeInsets.only(right: 16.0),
             child: IconButton(
-                tooltip: "โหลดข้อมูลอีกครั้ง",
-                onPressed: _addNewData,
+                tooltip: 'โหลดข้อมูลอีกครั้ง',
+                onPressed: _reloadData,
                 icon: const Icon(Ionicons.refresh_outline)),
           ),
         ],
@@ -135,6 +146,13 @@ class GediDataSource extends DataTableSource {
     return d.substring(0, 19);
   }
 
+  pushFileGedi(String filename) {
+    return TextButton(
+        onPressed: () async => Navigator.push(this.context,
+            MaterialPageRoute(builder: (_) => GediTextView(title: filename))),
+        child: Text(filename));
+  }
+
   @override
   DataRow? getRow(int index) {
     var formatter = NumberFormat('#,##,000');
@@ -143,7 +161,7 @@ class GediDataSource extends DataTableSource {
       DataCell(rWhs(Random().nextInt(4))),
       DataCell(rType(Random().nextInt(2))),
       DataCell(Text((Random().nextInt(99999)).toString().padLeft(5, '0'))),
-      DataCell(Text("OES.WHAE.32T$index.SPL.20211120131117.TXT")),
+      DataCell(pushFileGedi("OES.WHAE.32T$index.SPL.20211120131117.TXT")),
       DataCell(Text(formatter.format(Random().nextInt(99999)).toString())),
       DataCell(rStatus(Random().nextBool())),
       DataCell(Text(rDateTime())),

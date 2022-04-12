@@ -15,6 +15,7 @@ class HomePageWidget extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        resizeToAvoidBottomInset: true,
         appBar: AppBar(
           title: Text(widget.title),
           actions: <Widget>[
