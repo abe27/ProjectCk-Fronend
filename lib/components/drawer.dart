@@ -34,7 +34,16 @@ class DrawerWidget extends StatelessWidget {
               onTap: () async {
                 Navigator.pop(context, 'Nope.');
               }),
-          const Divider(),
+          const Divider(
+            height: 1,
+            thickness: 1,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'จัดเตรียมข้อมูล',
+            ),
+          ),
           ListTile(
               leading: const Icon(Ionicons.cloud_download_outline),
               title: const Tooltip(
@@ -52,13 +61,22 @@ class DrawerWidget extends StatelessWidget {
               }),
           const ListTile(
               leading: Icon(Ionicons.barcode_outline),
-              title: const Tooltip(
-                  message: "แสดงข้อมูลการรับสินค้าเข้าระบบ",
+              title: Tooltip(
+                  message: 'แสดงข้อมูลการรับสินค้าเข้าระบบ',
                   child: Text("ข้อมูลการรับสินค้า")),
-              trailing: const Icon(Icons.arrow_drop_up),
+              trailing: Icon(Icons.arrow_drop_up),
               tileColor: null,
               onTap: null),
-          const Divider(),
+          const Divider(
+            height: 1,
+            thickness: 1,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'ข้อมูล Invoice Control',
+            ),
+          ),
           const ListTile(
             leading: Icon(Ionicons.calendar_outline),
             title: Tooltip(
@@ -69,25 +87,25 @@ class DrawerWidget extends StatelessWidget {
             onTap: null,
           ),
           const ListTile(
-            leading: const Icon(Ionicons.document_text_outline),
+            leading: Icon(Ionicons.document_text_outline),
             title: Tooltip(
                 message: "แสดงข้อมูลการออก Invoice",
-                child: const Text("ข้อมูล Invoice")),
+                child: Text("ข้อมูล Invoice")),
             trailing: Icon(Icons.arrow_drop_up),
             tileColor: null,
             onTap: null,
           ),
           const ListTile(
-            leading: const Icon(Ionicons.archive_outline),
-            title: const Tooltip(
+            leading: Icon(Ionicons.archive_outline),
+            title: Tooltip(
                 message: "แสดงข้อมูลการร้องขอตู้ Container",
                 child: Text("ข้อมูล Container Request")),
-            trailing: const Icon(Icons.arrow_drop_up),
+            trailing: Icon(Icons.arrow_drop_up),
             tileColor: null,
             onTap: null,
           ),
           const ListTile(
-            leading: const Icon(Ionicons.cut_outline),
+            leading: Icon(Ionicons.cut_outline),
             title: Tooltip(
                 message: "แสดงข้อมูลการตาม Part และตัด Short",
                 child: Text("ข้อมูล Part Short")),
@@ -95,23 +113,41 @@ class DrawerWidget extends StatelessWidget {
             tileColor: null,
             onTap: null,
           ),
-          const Divider(),
+          const Divider(
+            height: 1,
+            thickness: 1,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'ข้อมูล GEDI',
+            ),
+          ),
           const ListTile(
-            leading: const Icon(Ionicons.cloud_upload_outline),
+            leading: Icon(Ionicons.cloud_upload_outline),
             title: Tooltip(
                 message: "แสดงข้อมูลการอัพโหลดข้อมูล GEDI",
-                child: const Text("ข้อมูล Upload GEDI")),
+                child: Text("ข้อมูล Upload GEDI")),
             trailing: Icon(Icons.arrow_drop_up),
             tileColor: null,
             onTap: null,
           ),
-          const Divider(),
+          const Divider(
+            height: 1,
+            thickness: 1,
+          ),
+          const Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(
+              'รายงาน',
+            ),
+          ),
           const ListTile(
-            leading: const Icon(Ionicons.file_tray_full_outline),
-            title: const Tooltip(
+            leading: Icon(Ionicons.file_tray_full_outline),
+            title: Tooltip(
                 message: "รายงานสินค้าคงคลัง",
                 child: Text("รายงานข้อมูล Stock")),
-            trailing: const Icon(Icons.arrow_drop_up),
+            trailing: Icon(Icons.arrow_drop_up),
             tileColor: null,
             onTap: null,
           ),

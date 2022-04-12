@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../components/del_dialog.dart';
+
 class DownloadGediPage extends StatefulWidget {
   const DownloadGediPage({Key? key, required this.title}) : super(key: key);
   final String title;
@@ -112,16 +114,20 @@ class GediDataSource extends DataTableSource {
 
   rStatus(bool x) {
     if (x) {
-      return const Text(
-        "Yes",
-        style: TextStyle(color: Colors.red),
-      );
+      return TextButton(
+          onPressed: () => print("yes to no sync!"),
+          child: const Text(
+            "Yes",
+            style: TextStyle(color: Colors.green),
+          ));
     }
 
-    return const Text(
-      "No",
-      style: TextStyle(color: Colors.green),
-    );
+    return TextButton(
+        onPressed: () => print("no to yes sync!"),
+        child: const Text(
+          "No",
+          style: TextStyle(color: Colors.red),
+        ));
   }
 
   rDateTime() {
@@ -141,14 +147,7 @@ class GediDataSource extends DataTableSource {
       DataCell(Text(formatter.format(Random().nextInt(99999)).toString())),
       DataCell(rStatus(Random().nextBool())),
       DataCell(Text(rDateTime())),
-      DataCell(IconButton(
-        color: Colors.red,
-        tooltip: "ลบข้อมูล $index",
-        onPressed: () {
-          print("delete $index");
-        },
-        icon: const Icon(Ionicons.trash_outline, size: 16),
-      )),
+      DataCell(DeleteDialogWidgets(id: index.toString())),
     ]);
   }
 }
