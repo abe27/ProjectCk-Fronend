@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:ionicons/ionicons.dart';
 
+import '../pages/auth.dart';
 import '../pages/download_gedi.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -152,14 +153,15 @@ class DrawerWidget extends StatelessWidget {
             onTap: null,
           ),
           // Divider(),
-          const Expanded(
+          Expanded(
             child: Align(
               alignment: Alignment.bottomLeft,
               child: ListTile(
-                  leading: Icon(Ionicons.log_out_outline),
-                  title: Tooltip(
+                  leading: const Icon(Ionicons.log_out_outline),
+                  title: const Tooltip(
                       message: "ออกจาระบบ CK-WHS", child: Text('ออกจากระบบ')),
-                  onTap: null),
+                  onTap: () async => Navigator.push(context,
+                      MaterialPageRoute(builder: (_) => AuthenticationPage()))),
             ),
           ),
         ],
